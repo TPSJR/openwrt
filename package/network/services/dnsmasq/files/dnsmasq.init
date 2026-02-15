@@ -359,8 +359,9 @@ dhcp_host_add() {
 	config_get name "$cfg" name
 	config_get ip "$cfg" ip
 	config_get hostid "$cfg" hostid
+	config_get tag "$cfg" tag
 
-	[ -z "$ip" ] && [ -z "$name" ] && [ -z "$hostid" ] && return 0
+	[ -z "$ip" ] && [ -z "$name" ] && [ -z "$hostid" ] && [ -z "$tag" ] && return 0
 
 	config_get_bool dns "$cfg" dns 0
 	[ "$dns" = "1" ] && [ -n "$ip" ] && [ -n "$name" ] && {
@@ -369,7 +370,6 @@ dhcp_host_add() {
 
 	config_get mac "$cfg" mac
 	config_get duid "$cfg" duid
-	config_get tag "$cfg" tag
 
 	add_tag() {
 		mtags="${mtags}tag:$1,"
